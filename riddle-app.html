@@ -1,93 +1,74 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dillon’s Riddle Generator</title>
   <style>
     body {
-      background-color: #f2f9ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      background:#eaf6ff;
+      font-family:Arial,Helvetica,sans-serif;
+      text-align:center;
+      padding:50px;
     }
-    h1 {
-      color: #004d99;
+    h1{color:#004d99;margin-bottom:10px;}
+    button{
+      background:#007bff;color:#fff;border:none;
+      padding:10px 25px;border-radius:6px;
+      cursor:pointer;font-size:16px;
     }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 20px;
-      font-size: 16px;
+    button:hover{background:#0056b3;}
+    .riddle-box{
+      background:#fff;border:1px solid #ccc;
+      border-radius:8px;padding:20px;
+      width:60%;margin:30px auto;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
     }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .riddle-box {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      margin-top: 30px;
-      width: 60%;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    a {
-      display: inline-block;
-      margin-top: 40px;
-      color: #004d99;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a{display:inline-block;margin-top:40px;color:#004d99;text-decoration:none;}
+    a:hover{text-decoration:underline;}
   </style>
 </head>
 <body>
 
   <h1>🤔 Dillon’s Riddle Generator</h1>
-  <p>Click below to get a random riddle!</p>
+  <p>Click below to get a random riddle.</p>
 
-  <button onclick="showRiddle()">Show Riddle</button>
+  <button id="showBtn">Show Riddle</button>
+  <button id="answerBtn" style="display:none;">Reveal Answer</button>
 
-  <div class="riddle-box" id="riddleBox">
-    <p><strong>Riddle:</strong> Click the button to begin!</p>
+  <div class="riddle-box" id="box">
+    <p><strong>Riddle:</strong> Click “Show Riddle” to begin.</p>
     <p id="answer" style="display:none;"><strong>Answer:</strong></p>
   </div>
-
-  <button id="revealBtn" style="display:none;" onclick="showAnswer()">Reveal Answer</button>
 
   <a href="scratch.html">← Back to Scratch Page</a>
 
   <script>
-    const riddles = [
-      { q: "What has to be broken before you can use it?", a: "An egg." },
-      { q: "I’m tall when I’m young, and I’m short when I’m old. What am I?", a: "A candle." },
-      { q: "What month of the year has 28 days?", a: "All of them." },
-      { q: "What is full of holes but still holds water?", a: "A sponge." },
-      { q: "What question can you never answer yes to?", a: "Are you asleep yet?" }
+    const riddles=[
+      {q:"What has to be broken before you can use it?",a:"An egg."},
+      {q:"I’m tall when I’m young, and I’m short when I’m old. What am I?",a:"A candle."},
+      {q:"What month of the year has 28 days?",a:"All of them."},
+      {q:"What is full of holes but still holds water?",a:"A sponge."},
+      {q:"What question can you never answer yes to?",a:"Are you asleep yet?"}
     ];
 
-    function showRiddle() {
-      const random = riddles[Math.floor(Math.random() * riddles.length)];
-      const box = document.getElementById("riddleBox");
-      box.innerHTML = `
-        <p><strong>Riddle:</strong> ${random.q}</p>
-        <p id="answer" style="display:none;"><strong>Answer:</strong> ${random.a}</p>
-      `;
-      document.getElementById("revealBtn").style.display = "inline-block";
-    }
+    const showBtn=document.getElementById("showBtn");
+    const answerBtn=document.getElementById("answerBtn");
+    const box=document.getElementById("box");
+    const answer=document.getElementById("answer");
 
-    function showAnswer() {
-      document.getElementById("answer").style.display = "block";
-    }
+    showBtn.addEventListener("click",()=>{
+      const r=riddles[Math.floor(Math.random()*riddles.length)];
+      box.innerHTML=`<p><strong>Riddle:</strong> ${r.q}</p>
+                     <p id="answer" style="display:none;"><strong>Answer:</strong> ${r.a}</p>`;
+      answerBtn.style.display="inline-block";
+    });
+
+    answerBtn.addEventListener("click",()=>{
+      const ans=document.getElementById("answer");
+      if(ans) ans.style.display="block";
+    });
   </script>
-
 </body>
 </html>
+

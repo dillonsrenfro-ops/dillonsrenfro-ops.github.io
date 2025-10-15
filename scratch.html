@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dillon Renfro – Scratch Page</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="scratch-style.css">
 
   <style>
     :root {
@@ -59,6 +60,7 @@
   </style>
 </head>
 <body>
+  <!-- Navigation Box -->
   <div class="nav-box">
     <a href="index.html">Home</a>
     <a href="resume.html">Résumé</a>
@@ -67,19 +69,47 @@
     <a href="public-administration.html">Public Admin</a>
   </div>
 
+  <a id="top"></a> <!-- Anchor for "Back to Top" -->
+
   <div class="content">
-    <h1>My Golf Favorites & Dreams</h1>
+    <h1>⛳ My Golf Favorites & Dreams</h1>
 
     <section class="mb-4">
       <h3>Favorite Course</h3>
-      <p><strong>Old Mill</strong> in Salt Lake City — the views, layout, and challenge make it unforgettable.</p>
+      <p><strong>Old Mill</strong> in Salt Lake City — There is nothing better than playing 18 holes here at 6:45 AM on a summer day.</p>
     </section>
 
     <section class="mb-4">
       <h3>Dream Course</h3>
-      <p><strong>Black Desert Resort</strong> in St. George — the kind of course you dream about playing.</p>
+      <p><strong>Black Desert Resort</strong> in St. George — Brand new course in Saint George that is beautiful.</p>
     </section>
 
+    <!-- Nested List Requirement -->
+    <section class="mb-5">
+      <h3>Top 3 Golf Holes I’ve Played</h3>
+      <ol>
+        <li>Old Mill #18
+          <ul>
+            <li>Scenic downhill drive</li>
+            <li>Water hazard near green</li>
+          </ul>
+        </li>
+        <li>Thanksgiving Point #7
+          <ul>
+            <li>Long par 5</li>
+            <li>Mountain backdrop</li>
+          </ul>
+        </li>
+        <li>Bonneville #10
+          <ul>
+            <li>Tricky dogleg left</li>
+            <li>Wind challenge</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <!-- YouTube Video Requirement -->
     <section class="video-wrapper">
       <h3>See It in Action</h3>
       <iframe
@@ -92,6 +122,20 @@
         allowfullscreen>
       </iframe>
     </section>
+
+    <!-- Tableau Visualization Requirement -->
+    <section class="mt-5 text-center">
+      <h3>Golf Stats Visualization (Interactive Tableau)</h3>
+      <p>This live Tableau chart shows average driving distance by year.</p>
+      <div class="ratio ratio-16x9">
+        <iframe src="https://public.tableau.com/views/GolfStatsDashboard/GolfDashboard?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link" 
+          width="800" height="600" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <p class="text-center mt-4">
+      <a href="#top" class="btn btn-outline-primary">↑ Back to Top</a>
+    </p>
 
     <p class="text-center mt-5">
       <a href="index.html" class="btn btn-outline-primary">← Back to Home</a>

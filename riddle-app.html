@@ -1,108 +1,154 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dillon’s Riddle App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-  :root {
-    --byu-blue: #002E5D;
-    --byu-light-blue: #417DC1;
-  }
-  .nav-box {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--byu-blue);
-    border-radius: 10px;
-    padding: 15px 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .nav-box a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 6px 0;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out;
-  }
-  .nav-box a:hover {
-    color: var(--byu-light-blue);
-  }
-</style>
+    :root {
+      --byu-blue: #002E5D;
+      --byu-light-blue: #417DC1;
+    }
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dillon’s Riddle Generator</title>
-  <style>
     body {
-      background:#eaf6ff;
-      font-family:Arial,Helvetica,sans-serif;
-      text-align:center;
-      padding:50px;
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: #f3f7fb;
+      color: var(--byu-blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
-    h1{color:#004d99;margin-bottom:10px;}
-    button{
-      background:#007bff;color:#fff;border:none;
-      padding:10px 25px;border-radius:6px;
-      cursor:pointer;font-size:16px;
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
     }
-    button:hover{background:#0056b3;}
-    .riddle-box{
-      background:#fff;border:1px solid #ccc;
-      border-radius:8px;padding:20px;
-      width:60%;margin:30px auto;
-      box-shadow:0 0 10px rgba(0,0,0,0.1);
+
+    h1 {
+      color: var(--byu-blue);
+      margin-bottom: 30px;
     }
-    a{display:inline-block;margin-top:40px;color:#004d99;text-decoration:none;}
-    a:hover{text-decoration:underline;}
+
+    #riddle {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    #answer {
+      font-size: 1.1rem;
+      color: var(--byu-light-blue);
+      font-style: italic;
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      color: white;
+      background-color: var(--byu-blue);
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: var(--byu-light-blue);
+    }
+
+    .nav-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--byu-blue);
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .nav-box a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      padding: 6px 0;
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+    }
+
+    .nav-box a:hover {
+      color: var(--byu-light-blue);
+    }
   </style>
 </head>
 <body>
 
-  <h1>🤔 Dillon’s Riddle Generator</h1>
-  <p>Click below to get a random riddle.</p>
-
-  <button id="showBtn">Show Riddle</button>
-  <button id="answerBtn" style="display:none;">Reveal Answer</button>
-
-  <div class="riddle-box" id="box">
-    <p><strong>Riddle:</strong> Click “Show Riddle” to begin.</p>
-    <p id="answer" style="display:none;"><strong>Answer:</strong></p>
+  <!-- Navigation Box -->
+  <div class="nav-box">
+    <a href="index.html">Home</a>
+    <a href="resume.html">Résumé</a>
+    <a href="scratch.html">Scratch Page</a>
+    <a href="riddle-app.html">Riddle App</a>
+    <a href="public-administration.html">Public Admin</a>
   </div>
 
-  <a href="scratch.html">← Back to Scratch Page</a>
+  <div class="container">
+    <h1>Riddle Me This 🧩</h1>
+    <p id="riddle">Click “Next Riddle” to begin!</p>
+    <p id="answer"></p>
+    <button id="showAnswerBtn">Show Answer</button>
+    <button id="nextRiddleBtn">Next Riddle</button>
+  </div>
 
   <script>
-    const riddles=[
-      {q:"What has to be broken before you can use it?",a:"An egg."},
-      {q:"I’m tall when I’m young, and I’m short when I’m old. What am I?",a:"A candle."},
-      {q:"What month of the year has 28 days?",a:"All of them."},
-      {q:"What is full of holes but still holds water?",a:"A sponge."},
-      {q:"What question can you never answer yes to?",a:"Are you asleep yet?"}
+    const riddles = [
+      { q: "I’m tall when I’m young and short when I’m old. What am I?", a: "A candle." },
+      { q: "What has a head and a tail but no body?", a: "A coin." },
+      { q: "The more you take, the more you leave behind. What am I?", a: "Footsteps." },
+      { q: "Grandpa went for a walk, and it started raining. He forgot an umbrella and didn’t have a hat. When he got home, his clothes were soaking wet, but not a hair on his head was wet. How was this possible?", a: "Grandpa is bald." },
+      { q: "What comes once in a minute, twice in a moment, but never in a thousand years?", a: "The letter 'M'." },
+      { q: "I speak without a mouth and hear without ears. I have nobody, but I come alive with the wind. What am I?", a: "An echo." },
+      { q: "What is full of holes but still holds water?", a: "A sponge." },
+      { q: "What has hands but cannot clap?", a: "A clock." },
+      { q: "What can travel around the world while staying in a corner?", a: "A stamp." },
+      { q: "What has a neck but no head?", a: "A bottle." },
+      { q: "What has keys but can’t open locks?", a: "A keyboard." },
+      { q: "What can you catch but not throw?", a: "A cold." },
+      { q: "What has a face and two hands but no arms or legs?", a: "A clock." }
     ];
 
-    const showBtn=document.getElementById("showBtn");
-    const answerBtn=document.getElementById("answerBtn");
-    const box=document.getElementById("box");
-    const answer=document.getElementById("answer");
+    let currentIndex = -1;
 
-    showBtn.addEventListener("click",()=>{
-      const r=riddles[Math.floor(Math.random()*riddles.length)];
-      box.innerHTML=`<p><strong>Riddle:</strong> ${r.q}</p>
-                     <p id="answer" style="display:none;"><strong>Answer:</strong> ${r.a}</p>`;
-      answerBtn.style.display="inline-block";
+    const riddleEl = document.getElementById("riddle");
+    const answerEl = document.getElementById("answer");
+    const showAnswerBtn = document.getElementById("showAnswerBtn");
+    const nextRiddleBtn = document.getElementById("nextRiddleBtn");
+
+    function showRiddle() {
+      currentIndex = (currentIndex + 1) % riddles.length;
+      riddleEl.textContent = riddles[currentIndex].q;
+      answerEl.textContent = riddles[currentIndex].a;
+      answerEl.style.display = "none";
+    }
+
+    showAnswerBtn.addEventListener("click", () => {
+      answerEl.style.display = "block";
     });
 
-    answerBtn.addEventListener("click",()=>{
-      const ans=document.getElementById("answer");
-      if(ans) ans.style.display="block";
-    });
+    nextRiddleBtn.addEventListener("click", showRiddle);
   </script>
+
 </body>
 </html>
-<div class="nav-box">
-  <a href="index.html">Home</a>
-  <a href="resume.html">Résumé</a>
-  <a href="scratch.html">Scratch Page</a>
-  <a href="riddle-app.html">Riddle App</a>
-  <a href="public-administration.html">Public Admin</a>
-</div>
-

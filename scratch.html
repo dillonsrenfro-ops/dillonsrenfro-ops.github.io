@@ -57,6 +57,13 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       max-width: 100%;
     }
+    img {
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: block;
+      margin: 25px auto;
+      max-width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -78,6 +85,10 @@
       <h3>Favorite Course</h3>
       <p><strong>Old Mill</strong> in Salt Lake City — Nothing better than a 6:45 AM tee time with my brothers here.</p>
     </section>
+
+    <!-- 🖼️ Required Image -->
+    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" 
+         alt="Beautiful golf course at sunrise">
 
     <section class="mb-4">
       <h3>Dream Course</h3>
@@ -124,21 +135,19 @@
     </section>
 
     <!-- Tableau Visualization Requirement -->
-  <iframe
-  src="https://public.tableau.com/views/RegionalSampleWorkbook/Storms?:embed=y&:showVizHome=no"
-  width="800"
-  height="600"
-  frameborder="0"
-  allowfullscreen>
-</iframe>
-
-      </div>
-
+    <section class="mt-5 text-center">
+      <h3>Golf Stats Visualization (Interactive Tableau)</h3>
+      <iframe
+        src="https://public.tableau.com/views/RegionalSampleWorkbook/Storms?:embed=y&:showVizHome=no"
+        width="800"
+        height="600"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
       <p class="text-muted mt-2">
         <em>If the Tableau visualization does not load due to connection issues, 
         you can <a href="https://public.tableau.com/app/profile/tableau.sample.data/viz/SuperstoreDashboard_104/Overview" target="_blank">view it directly on Tableau Public</a>.</em>
       </p>
-
       <p class="text-center mt-2"><em>Example of a live Tableau dashboard from Tableau Public</em></p>
     </section>
 
